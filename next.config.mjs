@@ -7,7 +7,7 @@ const withMDX = nextMDX({
 })
 
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   pageExtensions: ["js", "jsx", "mdx"],
   webpack(config) {
     // Grab the existing rule that handles SVG imports
