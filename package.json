@@ -1,6 +1,6 @@
 {
   "name": "jyc-codes",
-  "private": false,
+  "private": true,
   "version": "1.0.0",
   "main": "page.js",
   "author": "Jonathan Chuang <jchuangsa@gmail.com>",
@@ -14,7 +14,8 @@
     "postcss": ">=8.4.31",
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
-    "sass": "^1.69.7"
+    "sass": "^1.69.7",
+    "@types/bun": "latest"
   },
   "keywords": [
     "gatsby",
@@ -59,5 +60,8 @@
   },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
   }
 }
