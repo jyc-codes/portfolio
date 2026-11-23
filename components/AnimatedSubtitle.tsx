@@ -2,9 +2,16 @@
 
 import React from "react"
 import { useSpring, animated } from "@react-spring/web"
-import Proptypes from "prop-types"
 
-export default function AnimatedSubtitle({ text, delay = 2000 }) {
+type AnimatedSubtitleProps = {
+  text?: string
+  delay?: number
+}
+
+export default function AnimatedSubtitle({
+  text,
+  delay = 2000,
+}: AnimatedSubtitleProps) {
   const props = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -16,9 +23,4 @@ export default function AnimatedSubtitle({ text, delay = 2000 }) {
       {text}
     </animated.p>
   )
-}
-
-AnimatedSubtitle.propTypes = {
-  text: Proptypes.string,
-  delay: Proptypes.number,
 }

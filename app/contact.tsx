@@ -1,10 +1,8 @@
 import React from "react"
-import Layout from "@/components/layout"
 
 export default function ContactPage()  {
 
   return (
-    <Layout>
       <article className="post-content page-template no-image">
         <form method="post" action="#">
           <div className="row gtr-uniform">
@@ -14,7 +12,7 @@ export default function ContactPage()  {
                 Feel free to contact me about any job opportunities, questions,
                 feedback, anything really.
               </p>
-            </div>x
+            </div>
             {/* Break */}
             <div className="col-12">
               <textarea
@@ -40,6 +38,5 @@ export default function ContactPage()  {
           </div>
         </form>
       </article>
-    </Layout>
   )
 }

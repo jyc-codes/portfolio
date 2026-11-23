@@ -2,13 +2,22 @@
 
 import React from "react"
 import Link from "next/link"
-import PropTypes from "prop-types"
 
-export default function TableOfContents({ headings }) {
+type Heading = {
+  text: string
+  value: string
+  level: number
+}
+
+type TableOfContentsProps = {
+  headings: Heading[]
+}
+
+export default function TableOfContents({ headings }: TableOfContentsProps) {
   return (
     <div className="table-of-contents">
       <ul>
-        {headings.map(heading => {
+        {headings.map((heading: Heading) => {
           return (
             <li
               key={heading.value}
@@ -21,8 +30,4 @@ export default function TableOfContents({ headings }) {
       </ul>
     </div>
   )
-}
-
-TableOfContents.propTypes = {
-  headings: PropTypes.array.isRequired,
 }

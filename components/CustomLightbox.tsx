@@ -2,19 +2,24 @@
 
 import React from "react"
 import Lightbox from "yet-another-react-lightbox"
+import type { Slide } from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
 import NextJsImage from "@/components/NextjsImage"
 import { useState } from "react"
 import Inline from "yet-another-react-lightbox/plugins/inline"
-import PropTypes from 'prop-types';
 
-export default function CustomLightbox({ slides }) {
+type CustomLightboxProps = {
+  slides?: Slide[]
+}
+
+export default function CustomLightbox({ slides }: CustomLightboxProps) {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(0)
 
-  const toggleOpen = state => () => setOpen(state)
+  const toggleOpen = (state: boolean) => () => setOpen(state)
 
-  const updateIndex = ({ index: current }) => setIndex(current)
+  const updateIndex = ({ index: current }: { index: number }) =>
+    setIndex(current)
 
   return (
     <>
@@ -54,7 +59,3 @@ export default function CustomLightbox({ slides }) {
     </>
   )
 }
-
-CustomLightbox.propTypes = {
-  slides: PropTypes.array,
-};

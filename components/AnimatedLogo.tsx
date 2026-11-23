@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSpring, animated, to } from "@react-spring/web"
 import { useHover } from "@use-gesture/react"
-import PropTypes from "prop-types"
 
-export default function AnimatedLogo({ children }) {
+type AnimatedLogoProps = {
+  children: React.ReactNode
+}
+
+export default function AnimatedLogo({ children }: AnimatedLogoProps) {
   const [{ scale }, api] = useSpring(() => ({
     scale: 1,
   }))
@@ -18,8 +21,4 @@ export default function AnimatedLogo({ children }) {
       {children}
     </animated.div>
   )
-}
-
-AnimatedLogo.propTypes = {
-  children: PropTypes.node.isRequired,
 }

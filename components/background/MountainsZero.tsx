@@ -1,7 +1,7 @@
 import React from "react"
 import { useScroll, useSpring, animated } from "@react-spring/web"
 
-export default function Mountains(props) {
+export default function Mountains(props: React.SVGProps<SVGSVGElement>) {
   const { scrollYProgress } = useScroll()
   const animationProps = useSpring({
     from: { opacity: 0, zIndex: -999 },

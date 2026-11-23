@@ -1,8 +1,14 @@
 import React from "react"
 import Link from "next/link"
-import PropTypes from "prop-types"
 import { usePathname } from "next/navigation"
-export default function NavButton({ href, setToggleNav, title }) {
+
+type NavButtonProps = {
+  href: string
+  setToggleNav: (value: boolean) => void
+  title: string
+}
+
+export default function NavButton({ href, setToggleNav, title }: NavButtonProps) {
   const pathname = usePathname()
   return (
     <button
@@ -15,11 +21,4 @@ export default function NavButton({ href, setToggleNav, title }) {
       <Link href={href}>{title}</Link>
     </button>
   )
-}
-
-NavButton.propTypes = {
-  href: PropTypes.string.isRequired,
-  setToggleNav: PropTypes.func.isRequired,
-  toggleNav: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
 }

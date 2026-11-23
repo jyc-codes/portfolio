@@ -1,7 +1,7 @@
 import React from "react"
 import { useScroll, animated } from "@react-spring/web"
 
-export default function Circuit(props) {
+export default function Circuit(props: React.SVGProps<SVGSVGElement>) {
   const { scrollYProgress } = useScroll()
 
   return (

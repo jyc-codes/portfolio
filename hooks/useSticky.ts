@@ -4,7 +4,7 @@ export default function Sticky() {
   const [isSticky, setSticky] = useState(false)
   const [previousScrollPosition, setScrollPosition] = useState(0)
 
-  const element = useRef(null)
+  const element = useRef<HTMLDivElement>(null)
 
   const memoizedHandleScroll = useCallback(() => {
     let currentScrolledPosition = window.scrollY
@@ -23,19 +23,17 @@ export default function Sticky() {
     }
   }, [previousScrollPosition])
 
-  const debounce = useCallback((func, wait = 500, immediate = true) => {
-    let timeOut
-    return () => {
-      let context = this,
-        args = arguments
+  const debounce = useCallback(<T extends (...args: any[]) => void>(func: T, wait = 500, immediate = true) => {
+    let timeOut: ReturnType<typeof setTimeout> | null = null
+    return (...args: Parameters<T>) => {
       const later = () => {
         timeOut = null
-        if (!immediate) func.apply(context, args)
+        if (!immediate) func(...args)
       }
       const callNow = immediate && !timeOut
-      clearTimeout(timeOut)
+      if (timeOut) clearTimeout(timeOut)
       timeOut = setTimeout(later, wait)
-      if (callNow) func.apply(context, args)
+      if (callNow) func(...args)
     }
   }, [])
 

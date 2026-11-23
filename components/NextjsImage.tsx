@@ -5,9 +5,20 @@ import {
   isImageSlide,
   useLightboxProps,
 } from "yet-another-react-lightbox"
-import PropTypes from "prop-types"
+import type { Slide, SlideImage } from "yet-another-react-lightbox"
 
-function isNextJsImage(slide) {
+type NextJsImageProps = {
+  slide: Slide
+  rect: { width: number; height: number }
+}
+
+type NextJsSlide = SlideImage & {
+  width: number
+  height: number
+  blurDataURL?: string
+}
+
+function isNextJsImage(slide: Slide): slide is NextJsSlide {
   return (
     isImageSlide(slide) &&
     typeof slide.width === "number" &&
@@ -15,7 +26,7 @@ function isNextJsImage(slide) {
   )
 }
 
-export default function NextJsImage({ slide, rect }) {
+export default function NextJsImage({ slide, rect }: NextJsImageProps) {
   const { imageFit } = useLightboxProps().carousel
   const cover = isImageSlide(slide) && isImageFitCover(slide, imageFit)
 
@@ -47,9 +58,4 @@ export default function NextJsImage({ slide, rect }) {
       />
     </div>
   )
-}
-
-NextJsImage.propTypes = {
-  slide: PropTypes.object,
-  rect: PropTypes.object,
 }

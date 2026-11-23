@@ -10,10 +10,23 @@ import {
   ReduxFill,
   NodeFill,
 } from "akar-icons"
-import PropTypes from "prop-types"
 import { useSpring, animated } from "@react-spring/web"
 
-export default function FeaturedWork({ work }) {
+type FeaturedWorkProps = {
+  work: {
+    slug: string
+    title?: string
+    subtitle?: string
+    thumbnail: string
+    color: string
+    type: string
+    my_role: string
+    icons?: string[]
+    description?: string
+  }
+}
+
+export default function FeaturedWork({ work }: FeaturedWorkProps) {
   const [{ y }, set] = useSpring(() => ({ y: 0 }))
   return (
     <Link href={"/works/" + work.slug} className="featured-work-link">
@@ -40,7 +53,7 @@ export default function FeaturedWork({ work }) {
             </p>
             {work.icons && (
               <div className="featured-work-tech">
-                {work.icons?.map((tech, index) => {
+                {work.icons?.map((tech: string, index: number) => {
                   switch (tech) {
                     case "gatsby":
                       return <GatsbyFill key={index} />
@@ -96,8 +109,4 @@ export default function FeaturedWork({ work }) {
       </div>
     </Link>
   )
-}
-
-FeaturedWork.propTypes = {
-  work: PropTypes.object,
 }
