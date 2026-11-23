@@ -30,8 +30,8 @@
   ],
   "scripts": {
     "dev": "bun --bun next dev", 
-    "build": "bun --bun next build", 
-    "start": "bun --bun next start" ,
+    "build": "bun --bun next build --webpack", 
+    "start": "bun --bun next start --webpack" ,
     "lint": "next lint"
   },
   "dependencies": {
