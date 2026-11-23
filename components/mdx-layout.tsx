@@ -4,10 +4,32 @@ import React from "react"
 import Image from "next/image"
 import TableOfContents from "@/components/TableOfContents"
 import { MDXProvider } from "@mdx-js/react"
-import PropTypes from "prop-types"
 import { LinkOn } from "akar-icons"
 
-export default function MdxLayout({ data, children }) {
+type MdxHeading = {
+  text: string
+  value: string
+  level: number
+}
+
+type MdxData = {
+  title: string
+  headings: MdxHeading[]
+  description?: string
+  thumbnail?: string
+  project_timeline?: string
+  deliverable?: string
+  my_role?: string
+  link?: string
+  repo_link?: string
+}
+
+type MdxLayoutProps = {
+  data: MdxData
+  children: React.ReactNode
+}
+
+export default function MdxLayout({ data, children }: MdxLayoutProps) {
   return (
     <>
       <TableOfContents headings={data.headings} />
@@ -89,9 +111,4 @@ export default function MdxLayout({ data, children }) {
       </article>
     </>
   )
-}
-
-MdxLayout.propTypes = {
-  data: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
 }

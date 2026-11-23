@@ -3,16 +3,16 @@ import { read } from "to-vfile"
 import { remark } from "remark"
 import mdx from "remark-mdx"
 
-export default async function getWork(slug) {
+export default async function getWork(slug: string) {
   const { metadata } = await import(`../app/works/${slug}/page.mdx`)
   const file = await read(`./app/works/${slug}/page.mdx`)
   let contents = await remark()
     .use(mdx)
     .process(file)
-  const headingLines = contents.value.split("\n").filter(line => {
+  const headingLines = String(contents.value).split("\n").filter((line: string) => {
     return line.match(/^#+/g)
   })
-  let headings = headingLines.map(raw => {
+  let headings = headingLines.map((raw: string) => {
     let text = raw.replace(/(#|\*+)/g, "").trim()
     let value = raw
       .replace(/(#|\*|\.|'|\?|\(.*\)|\[|\]|,|:*)/g, "")
@@ -50,6 +50,6 @@ export async function getWorks() {
 
 export async function getSlugs() {
   const files = await readdir("./app/works")
-  const slugs = files.filter(file => !file.endsWith(".js"))
+  const slugs = files.filter(file => !/\.(js|jsx|ts|tsx)$/.test(file))
   return slugs
 }

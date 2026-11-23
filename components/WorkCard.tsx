@@ -16,9 +16,21 @@ import {
   GatsbyFill,
   JavascriptFill,
 } from "akar-icons"
-import Proptypes from "prop-types"
 
-const WorkCard = ({ work, count }) => {
+type WorkCardProps = {
+  work: {
+    slug: string
+    title?: string
+    type?: string
+    thumbnail: string
+    color?: string
+    description?: string
+    icons: Array<{ value: string }>
+  }
+  count: number
+}
+
+const WorkCard = ({ work, count }: WorkCardProps) => {
   return (
     <MDXProvider
       components={{
@@ -61,9 +73,11 @@ const WorkCard = ({ work, count }) => {
             >
               <div>
                 {work.icons
-                  ? work.icons.map((item, index) => (
-                      <div key={index}>{item.value}</div>
-                    ))
+                  ? work.icons.map(
+                      (item: { value: string }, index: number) => (
+                        <div key={index}>{item.value}</div>
+                      )
+                    )
                   : ""}
               </div>
             </div>
@@ -76,8 +90,3 @@ const WorkCard = ({ work, count }) => {
 }
 
 export default WorkCard
-
-WorkCard.propTypes = {
-  work: Proptypes.object.isRequired,
-  count: Proptypes.number.isRequired,
-}

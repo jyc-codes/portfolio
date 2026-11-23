@@ -2,9 +2,18 @@
 
 import React from "react"
 import { useTrail, animated } from "@react-spring/web"
-import PropTypes from "prop-types"
 
-export default function AnimatedHeader({ text, delay = 1000, subheaderFlag }) {
+type AnimatedHeaderProps = {
+  text?: string
+  delay?: number
+  subheaderFlag?: boolean
+}
+
+export default function AnimatedHeader({
+  text,
+  delay = 1000,
+  subheaderFlag = false,
+}: AnimatedHeaderProps) {
   const trail = useTrail(1, {
     config: { mass: 5, tension: 2000, friction: 200 },
     from: { opacity: 0, x: 20, height: 0 },
@@ -31,10 +40,4 @@ export default function AnimatedHeader({ text, delay = 1000, subheaderFlag }) {
           ))}
     </>
   )
-}
-
-AnimatedHeader.propTypes = {
-  text: PropTypes.string,
-  delay: PropTypes.number,
-  subheaderFlag: PropTypes.bool,
 }

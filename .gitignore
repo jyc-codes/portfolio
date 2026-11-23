@@ -12,3 +12,6 @@ public/static
 
 # dotenv environment variables file
 .env
+
+# TypeScript incremental build info
+*.tsbuildinfo

@@ -6,11 +6,15 @@ import NavButton from "@/components/NavButton"
 import FadeIn from "@/components/FadeIn"
 import Flow from "@/components/background/Flow"
 import Circuit from "@/components/background/Circuit"
-import PropTypes from "prop-types"
 import { useSpring, animated } from "@react-spring/web"
 import MountainsZero from "@/components/background/MountainsZero"
 import { usePathname } from "next/navigation"
-export default function RootLayout({ children }) {
+
+type RootLayoutProps = {
+  children: React.ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   const [navToggle, setNavToggle] = useState(false)
   const { isSticky, element } = useSticky()
   const [{ y }, set] = useSpring(() => ({ y: 0, color: "#fff" }))
@@ -105,9 +109,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   )
-}
-
-RootLayout.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
 }

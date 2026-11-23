@@ -1,5 +1,7 @@
 // This file is required to use @next/mdx in the `app` directory.
-export function useMDXComponents(components) {
+import type React from "react"
+
+export function useMDXComponents(components: Record<string, React.ElementType>) {
     return components
     // Allows customizing built-in components, e.g. to add styling.
     // return {

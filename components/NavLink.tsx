@@ -1,0 +1,11 @@
+import React from "react"
+import Link from "next/link"
+
+type NavLinkProps = {
+  children: string
+  href: string
+}
+
+export default function NavLink({ children, href }: NavLinkProps) {
+  return <Link href={href}>{children}</Link>
+}
